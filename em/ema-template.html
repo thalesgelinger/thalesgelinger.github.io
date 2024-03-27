@@ -92,6 +92,22 @@
         <form class="flex flex-col items-center">
 
             <div class="flex flex-col flex-1 w-full my-4">
+                <h5 class="text-xl my-1">Checklist before the pull request submission</h5>
+                <label>
+                    <input name="hasStorybook" type="checkbox" value="">
+                    Added storybook
+                </label>
+                <label>
+                    <input name="hasUnitTests" type="checkbox" value="">
+                    Added unit tests
+                </label>
+                <label>
+                    <input name="hasAnotherDevTested" type="checkbox" value="">
+                    Another dev tested it
+                </label>
+            </div>
+
+            <div class="flex flex-col flex-1 w-full my-4">
                 <label class="text-xl my-1">This Pull Request Includes</label>
                 <label>
                     <input name="isNewFeature" type="checkbox" value="">
@@ -129,28 +145,10 @@
                     placeholder="Impacts (side effects), steps to reproduce the issue, steps to check the feature or other notes that may help in the pull request review."></textarea>
             </div>
 
-            <div class="flex flex-col flex-1 w-full my-4">
-                <h5 class="text-xl my-1">Checklist before the pull request submission</h5>
-                <label>
-                    <input name="hasStorybook" type="checkbox" value="">
-                    Added storybook
-                </label>
-                <label>
-                    <input name="hasUnitTests" type="checkbox" value="">
-                    Added unit tests
-                </label>
-                <label>
-                    <input name="hasAnotherDevTested" type="checkbox" value="">
-                    Another dev tested it
-                </label>
-            </div>
-
             <button type="submit" class="bg-white text-black px-3 py-1 m-2 rounded">
                 Generate Markdown
             </button>
         </form>
-
-
 
         <div class="flex flex-col hidden mb-5" id="markdown">
             <div class="flex justify-between">
