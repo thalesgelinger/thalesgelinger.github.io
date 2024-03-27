@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>EMA Pull Request Template</title>
+    <meta name="description" content="A helper to create the description for the pull requests of the EMA Mobile Apps">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        green: '#169A5A',
+                        gray: '#aaaaaa',
+                    }
+                }
+            }
+        }
+
+        window.addEventListener('load', (event) => {
+            const form = document.querySelector("form");
+            const copy = document.querySelector("#copy");
+            const textarea = document.querySelector("#markdown > textarea")
+
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
+
+                const titles = {
+                    isNewFeature: "New Feature",
+                    isBugFix: "Bug Fix",
+                    isImprovement: "Improvement",
+                    isAnalytics: "Analytics"
+                }
+
+                const prContains = Object.keys(titles).map((key) => {
+                    const checked = form.elements[key].checked ? "x" : ""
+                    return ` - [${checked}] ${titles[key]}`
+                }).join("\n")
+
+                const description = form.elements.description.value
+
+                if (!description) {
+                    alert("PR description not provided")
+                    return
+                }
+
+                const coverage = form.elements.coverage.value
+
+                if (!coverage) {
+                    alert("PR description not provided")
+                    return
+                }
+
+                const devNotes = form.elements.devNotes.value
+
+                const markdown = document.querySelector("#markdown");
+
+                const markDownData = [
+                    "### This Pull Request Includes",
+                    prContains,
+                    "### Description",
+                    description,
+                    "### Coverage",
+                    coverage
+                ]
+
+                !!devNotes && markDownData.push("### Dev Notes", devNotes)
+
+                textarea.value = markDownData.join("\n\n")
+
+                markdown.classList.remove("hidden")
+            });
+
+
+            copy.addEventListener("click", (event) => {
+                textarea.select();
+                document.execCommand("copy");
+            })
+        });
+    </script>
+
+</head>
+
+<body class="bg-green text-white">
+    <main class="flex flex-col w-[40vw] m-auto">
+
+        <h1 class="text-5xl my-5 pt-5">Pull Request Template</h1>
+        <h4 class="text-3xl mb-5">for Enterprise Mobile Apps</h4>
+
+
+        <form class="flex flex-col items-center">
+
+            <div class="flex flex-col flex-1 w-full my-4">
+                <label class="text-xl my-1">This Pull Request Includes</label>
+                <label>
+                    <input name="isNewFeature" type="checkbox" value="">
+                    New feature
+                </label>
+                <label>
+                    <input name="isBugFix" type="checkbox" value="">
+                    Bug fix
+                </label>
+                <label>
+                    <input name="isImprovement" type="checkbox" value="">
+                    Improvement
+                </label>
+                <label>
+                    <input name="isAnalytics" type="checkbox" value="">
+                    Analytics
+                </label>
+            </div>
+
+            <div class="flex flex-col w-full my-4">
+                <label for="inputText" class="text-xl my-1">Description <small>(required)</small></label>
+                <textarea name="description" rows="4" oninput="onInput()" class="text-black p-2"
+                    placeholder="Summarize the issue, feature or improvement. (the reason for creating this pull request)"></textarea>
+            </div>
+
+            <div class="flex flex-col w-full my-4">
+                <label class="text-xl my-1">Test Coverage</label>
+                <textarea name="coverage" rows="4" class="text-black p-2"
+                    placeholder="Run yarn test:coverage:pr copy and paste here"></textarea>
+            </div>
+
+            <div class="flex flex-col w-full my-4">
+                <label class="text-xl my-1">Dev Notes (optional)</label>
+                <textarea name="devNotes" rows="4" class="text-black p-2"
+                    placeholder="Impacts (side effects), steps to reproduce the issue, steps to check the feature or other notes that may help in the pull request review."></textarea>
+            </div>
+
+            <div class="flex flex-col flex-1 w-full my-4">
+                <h5 class="text-xl my-1">Checklist before the pull request submission</h5>
+                <label>
+                    <input name="hasStorybook" type="checkbox" value="">
+                    Added storybook
+                </label>
+                <label>
+                    <input name="hasUnitTests" type="checkbox" value="">
+                    Added unit tests
+                </label>
+                <label>
+                    <input name="hasAnotherDevTested" type="checkbox" value="">
+                    Another dev tested it
+                </label>
+            </div>
+
+            <button type="submit" class="bg-white text-black px-3 py-1 m-2 rounded">
+                Generate Markdown
+            </button>
+        </form>
+
+
+
+        <div class="flex flex-col hidden mb-5" id="markdown">
+            <div class="flex justify-between">
+                <h3>PR Markdown</h3>
+                <button type="button" id="copy" class="bg-white text-black px-3 py-1 m-2 rounded">
+                    Copy to clipboard
+                </button>
+            </div>
+            <textarea class="text-black p-2" rows="22" placeholder="This is where you gonna copy the text."></textarea>
+        </div>
+    </main>
+</body>
+
+</html>
