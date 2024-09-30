@@ -7,10 +7,13 @@ taxonomies:
   tag: "tags"
 
 params:
+  ShowReadingTime: true
+  ShowToc: true
 
   homeInfoParams:
     Title: Hey, i'm Thales Gelinger
     Content: I build cool stuff, write about it, and repeat, take a look in my posts, you may find something interesting
+
 
   socialIcons:
     - name: github
