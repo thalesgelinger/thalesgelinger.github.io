@@ -11,7 +11,7 @@ mkdir -r ~/.config/nix
 
 echo "Getting darwin flake"
 cd ~/.config/nix
-echo $(curl -L thalesgelinger.com/sh/flake.nix) > flake.nix
+curl -L thalesgelinger.com/sh/flake.nix -o flake.nix
 
 # clone my dotfiles before doing anything else, 
 # OR, i can just clone the flake, let's wait to see 
