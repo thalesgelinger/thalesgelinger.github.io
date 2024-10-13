@@ -7,22 +7,18 @@ echo "Install Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 echo "Creating nix config folder"
-mkdir -r ~/.config/nix
+mkdir -p ~/.config/nix
 
 echo "Getting darwin flake"
 cd ~/.config/nix
 curl -L thalesgelinger.com/sh/flake.nix -o flake.nix
-
-# clone my dotfiles before doing anything else, 
-# OR, i can just clone the flake, let's wait to see 
-# how the end file will look like
 
 echo "Run nix setup"
 nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/.config/nix#thales
 
 echo "Setup dotifles"
 cd ~
-git clone github.com/thalesgelinger/.dotfiles.git
+git clone https://github.com/thalesgelinger/.dotfiles.git
 cd .dotfiles
 stow .
 
