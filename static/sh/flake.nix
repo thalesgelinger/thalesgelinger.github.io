@@ -22,7 +22,6 @@
           pkgs.slack
           pkgs.teams
           pkgs.stow
-        # pkgs.android-studio
         ];
 
         homebrew = {
@@ -33,11 +32,13 @@
                 "bruno"
                 "figma"
                 "nikitabobko/tap/aerospace"
-                "minisim"
+                "font-monaspace-nerd-font" 
+                "font-noto-sans-symbols-2"
             ];
         };
 
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowUnsupportedSystem = true;
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -65,6 +66,10 @@
         dock.tilesize = 16;
         dock.orientation = "right";
         NSGlobalDomain._HIHideMenuBar = true;
+        finder.ShowStatusBar = true;
+        finder.FXDefaultSearchScope = "SCcf";
+        finder.FXPreferredViewStyle = "Nlsv";
+        finder.CreateDesktop = false;
       };
 
     };
@@ -95,3 +100,4 @@
     darwinPackages = self.darwinConfigurations."thales".pkgs;
   };
 }
+

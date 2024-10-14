@@ -52,6 +52,7 @@ echo "Add Project dir"
 mkdir ~/Projects
 
 echo "Clone wallpapers"
+cd ~
 git clone https://github.com/thalesgelinger/wallpapers.git
 
 echo "Finishing setup"
