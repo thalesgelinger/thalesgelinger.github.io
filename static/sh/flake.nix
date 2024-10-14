@@ -33,6 +33,7 @@
                 "bruno"
                 "figma"
                 "nikitabobko/tap/aerospace"
+                "minisim"
             ];
         };
 

@@ -22,4 +22,36 @@ git clone https://github.com/thalesgelinger/.dotfiles.git
 cd .dotfiles
 stow .
 
+
+echo "Add asdf plugins"
+asdf plugin add golang https://github.com/asdf-community/asdf-golang.git
+asdf install golang latest
+asdf global golang latest
+
+asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git
+asdf install erlang latest
+asdf global erlang latest
+
+asdf plugin add nodejs
+asdf install nodejs latest
+asdf global nodejs latest
+
+asdf plugin add rust
+asdf install rust latest
+asdf global rust latest
+
+asdf plugin add bun
+asdf install bun latest
+asdf global bun latest
+
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf install elixir latest
+asdf global elixir latest
+
+echo "Add Project dir"
+mkdir ~/Projects
+
+echo "Clone wallpapers"
+git clone https://github.com/thalesgelinger/wallpapers.git
+
 echo "Finishing setup"
