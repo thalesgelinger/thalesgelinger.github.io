@@ -6,7 +6,6 @@ updatedDate: "10 JUN 2024"
 tags: ["mobile", "pokemon", "java", "objective-c", "kotlin", "swift", "flutter", "react-native"]
 ---
 
-# Mobile Pokedex Flavours
 When we talk about learning to code theres nothing better than a project, and when we talk about frontend, right after the first hello world most of us think about the classic pokedex, well, i’m a mobile developer who has worked most of time with react native, i’ve done some integrations with native code and different techs some times but i’ve never did anything from scratch, and thinking about it, and how much i struggle the first time i saw objective C, i decide to make this project, the exactly same pokedex but made in all most famous (or not so famous) tech stacks.
 > Disclaimer: the goal here is just understanding how each technology works, I’m not focusing in architecture or good practices of each platform, so please, if you look at my code, focus in the functionality and not in real best readability possible
 

@@ -1,12 +1,10 @@
 ---
-title: 'Webassembly'
+title: 'Webassembly, How and Why?'
 description: "No, it's not assembly, it's webassembly, a way to handle native functions though web in a performatic way"
 publishDate: "22 Mar 2023"
 updatedDate: "22 Mar 2023"
 tags: ["webassembly", "performance"]
 ---
-
-# WebAssembly: How and Why?
 
 ## NO!!
 Before all, webassembly it's not just assembly as most of you can think in a first read, no one will suffer writing in the most low level programming language ever made, the webassembly, it's nothing else than a bytecode that allows to use languages beyond JS in the browser, allowing a best performance and bringing a bunch of changes in the way that we have been working with web so far.

@@ -12,7 +12,11 @@ params:
 
   homeInfoParams:
     Title: Hey, i'm Thales Gelinger
-    Content: I build cool stuff, write about it, and repeat, take a look in my posts, you may find something interesting
+    Content: >
+      I build cool stuff, write about it, and repeat, take a look in my posts, you may find something interesting
+      sometimes i make some youtube videos too.
+
+      {{< youtube sHI-_jbSuZY >}}
 
 
   socialIcons:

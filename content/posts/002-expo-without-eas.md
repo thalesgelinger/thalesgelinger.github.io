@@ -6,8 +6,6 @@ updatedDate: "28 Mar 2024"
 tags: ["expo", "build"]
 ---
 
-# How to build expo apps without EAS
-
 Expo 49 comes with new workflows, with newer versions, expo has a prebuilt command which enables native folders, and also, comes EAS which is expo solution for building iOS and Android apps frictionless, but if, you want to use expo, but you already has a pipeline in the old way, or you just don’t want to rely in expo services, and build your own build server?
 
 Here’s what this article came from, I will teach how you can build, android and iOS, everything from CLI, so. You can put in Jenkins, or whatever you want.
