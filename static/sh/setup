@@ -1,20 +1,52 @@
 #!/bin/bash
 
-echo "Install Nix"
-sh <(curl -L https://nixos.org/nix/install)
 
-echo "Install Homebrew"
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+function brew_stuff() {
+    echo "Install Homebrew"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-echo "Creating nix config folder"
-mkdir -p ~/.config/nix
+    brew_packages=(
+      fish
+      git
+      stow
+      aerospace                       
+      bruno                           
+      discord                         
+      figma                           
+      zen-browser
+      firefox                         
+      font-hack-nerd-font             
+      font-jetbrains-mono-nerd-font   
+      font-monaspace-nerd-font        
+      font-noto-sans-symbols-2        
+      love                            
+      microsoft-teams                 
+      minisim
+      raycast
+      slack
+      wezterm
+      asdf-vm
+      slack
+      neovim
+      ripgrep
+      tldr
+      tmux
+      ollama
+      ffmpeg
+    )
 
-echo "Getting darwin flake"
-cd ~/.config/nix
-curl -L thalesgelinger.com/sh/flake.nix -o flake.nix
+    for package in "${brew_packages[@]}"
+    do
+      echo "Installing $package..."
+      brew install "$package"
+    done
+}
 
-echo "Run nix setup"
-nix run nix-darwin --extra-experimental-features "nix-command flakes" -- switch --flake ~/.config/nix#thales
+brew_stuff
+
+echo "Setup fish"
+sudo sh -c 'echo /usr/local/bin/fish >> /etc/shells'
+chsh -s /usr/local/bin/fish
 
 echo "Setup dotifles"
 cd ~
@@ -50,9 +82,36 @@ asdf global elixir latest
 
 echo "Add Project dir"
 mkdir ~/Projects
+mkdir ~/Projects/personal/
+mkdir ~/Projects/work/
 
 echo "Clone wallpapers"
 cd ~
 git clone https://github.com/thalesgelinger/wallpapers.git
 
+function mac_defaults(){
+    echo "Setting up macos defaults"
+    # Dock settings
+    defaults write com.apple.dock autohide -bool true  # Enable dock autohide
+    defaults write com.apple.dock tilesize -int 16  # Set dock tile size to 16
+    defaults write com.apple.dock orientation -string "right"  # Set dock to right
+    killall Dock  # Restart Dock to apply changes
+
+    # Global Menu Bar
+    defaults write NSGlobalDomain _HIHideMenuBar -bool true  # Hide the menu bar by default
+
+    # Finder settings
+    defaults write com.apple.finder ShowStatusBar -bool true  # Show the status bar in Finder
+    defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"  # Set Finder search scope to "This Mac"
+    defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"  # Set Finder view to List View
+    defaults write com.apple.finder CreateDesktop -bool false  # Disable desktop icons
+    killall Finder  # Restart Finder to apply changes
+
+    # defaults write com.apple.desktop Background '{default = {ImageFilePath = "~/wallpapers"; };}'
+}
+
+mac_defaults
+
 echo "Finishing setup"
+
+exit
